@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
+    <link href="../Asset/Css/publicCss.css" rel="stylesheet" />
+    <script src="../Asset/Js/libs/jquery-3.3.1.js"></script>
+    <script src="../Asset/Js/libs/jquery.tmpl.js"></script>
+    <title>合格率</title>
+</head>
+<body>
+    <div id="Container" class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-12" style="background-color: #4E5AB0;">
+                <div class="col-xs-12" style="vertical-align: middle; text-align: center; padding: 10px;">
+                    <div style="color: #fff; font-size: 18px; display: inline-block;">合  格  率 </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height: 180PX; margin-top: 20PX; text-align: center;">
+            <div class="row">
+                <div class="col-xs-12" style="text-align: center;">
+                    <a data-toggle="modal" data-target="#myModal" style="cursor: pointer; color: #4E5AB0">[选择车型]</a>
+                </div>
+            </div>
+            <div class="col-xs-1" style="padding: 40PX 0PX;">
+                <img id="arrowPrev" src="" style="display: block;" /><!--../Asset/Img/arrow_prev.png-->
+            </div>
+            <div class="col-xs-10">
+            </div>
+            <div class="col-xs-1" style="padding: 40PX 0PX;">
+                <img id="arrowNext" src="" /><!--../Asset/Img/arrow_next.png-->
+            </div>
+        </div>
+
+        <div class="row" style="margin: 0px auto; text-align: center;">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <!--<div id="info" style="margin: 0px auto; width: 241PX; height: 60PX; margin-top: 0PX; text-align: center;">
+                    <div id="divCIIInfo" style="width: 120PX; height: 60PX; margin: 0PX; text-align: center; float: left">
+                        <div id="divCIITitle" style="width: 120PX; height: 20PX; margin: 0PX; text-align: center;">CII指数</div>
+                        <div id="divCIIValue" style="width: 120PX; height: 40PX; margin: 0PX; text-align: center; color: #FF8400; font-size: 24px;"></div>
+                    </div>
+                    <div id="divSplit" style="width: 1PX; height: 60PX; margin: 0PX; text-align: center; background-color: #4E5AB0; float: left"></div>
+                    <div id="divPassrateInfo" style="width: 120PX; height: 60PX; margin: 0PX; text-align: center; float: left">
+                        <div id="divPassrateTitle" style="width: 120PX; height: 20PX; margin: 0PX; text-align: center;">平均合格率</div>
+                        <div id="divPassrateValue" style="width: 120PX; height: 40PX; margin: 0PX; text-align: center; color: #FF8400; font-size: 24px;"></div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <!--<div id="chartPassrate" style="height: 230PX; margin-top: 10PX">
+                </div>-->
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+
+        <div class="row" id="bott">
+            <div class="col-xs-12 fix">
+                <div class="col-xs-4 col-lg-4">
+                    <a style="color: #4E5AB0;" href="PartStat.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-adjust" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center">
+                            数据统计
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-4 col-lg-4">
+                    <a class="unSelect" href="../QualityReport/Report.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-file" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            质量报告
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-lg-4">
+                    <a class='unSelect' href="../SystemSetting/SystemSetting.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-cog" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            系统设置
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--提交时的模态框-->
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-md" role="document">
+                <div id="modal-content" class="modal-content">
+                    <div class="modal-header">
+                        车型
+                    </div>
+                    <div class="modal-body">
+                        <div id="ProjectList" class="row">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button id="submit" type="button" data-dismiss="modal" class="btn btn-info">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="imgIndex" data-index="" style="display: none;"></div>
+    </div>
+
+    <script id="tmplImage" type="text/x-jquery-tmpl">
+        <div>
+            <img src="${URL}" alt="零件图片" style="border: 0;" />
+        </div>
+    </script>
+
+    <script id="tmplLabel" type="text/x-jquery-tmpl">
+        <div style="margin: 0px auto; height: 60PX; margin-top: 0PX; text-align: center;">
+            {{each(i,item) Items}}
+            <div style="width: 120PX; height: 60PX; margin: 0PX; text-align: center; float: left">
+                <div style="width: 120PX; height: 20PX; margin: 0PX; text-align: center;">${item.TagName}</div>
+                <div style="width: 120PX; height: 40PX; margin: 0PX; text-align: center; color: #FF8400; font-size: 24px;">${item.Value}</div>
+            </div>
+            {{if i!=Items.length-1}}
+            <div style="width: 1PX; height: 60PX; margin: 0PX; text-align: center; background-color: #4E5AB0; float: left"></div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </script>
+
+    <script id="tmplPassrateChart" type="text/x-jquery-tmpl">
+        <div id="PassrateChart" style="height: 230PX; margin-top: 10PX">
+        </div>
+    </script>
+
+    <script id="tmplCIIChart" type="text/x-jquery-tmpl">
+        <div id="CIIChart" style="height: 230PX; margin-top: 10PX">
+        </div>
+    </script>
+
+    <script id="tmplSortChart" type="text/x-jquery-tmpl">
+        <div id="SortChart" style="height: 230PX; margin-top: 10PX">
+        </div>
+    </script>
+
+    <script id="tmplMonthPassrateChart" type="text/x-jquery-tmpl">
+        <div id="MonthPassrateChart" style="height: 230PX; margin-top: 10PX">
+        </div>
+    </script>
+
+    <script id="tmplMonthCIIChart" type="text/x-jquery-tmpl">
+        <div id="MonthCIIChart" style="height: 230PX; margin-top: 10PX">
+        </div>
+    </script>
+
+    <script id="tmpl" type="text/x-jquery-tmpl">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </script>
+</body>
+
+<script src="../Asset/Js/require.js" data-main="../Asset/Js/PassRate/PartStat.js"></script>
+</html>

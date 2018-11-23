@@ -1,0 +1,51 @@
+﻿#imgWrap img {
+    width: 90px;
+    height: 60px;
+}
+
+.fixed {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    z-index: 9999;
+}
+
+.unSelect {
+    color: #909090;
+}
+
+.container-fluid {
+    position: relative;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#bott {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #F7F7F7;
+    border-top: 2PX solid #4E5AB0;
+    padding:3px 3px;
+    height: 55PX;
+}
+
+.col-xs-3 {
+    margin-top: 6PX;
+}
+
+.chart_area {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    display: block;
+}
+#arrowPrev {
+    cursor:pointer;
+}
+#arrowNext {
+    cursor:pointer;
+}

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+MeasureFileBase
+</name>
+</assembly>
+<members>
+<member name="T:MeasureFileBase.MeasureFile">
+	<summary>
+ 测量文件类
+ </summary>
+	<remarks></remarks>
+</member><member name="T:MeasureFileBase.MeasureFileHead">
+	<summary>
+ 测量文件头类
+ </summary>
+	<remarks></remarks>
+</member><member name="T:MeasureFileBase.MeasurePoint">
+	<summary>
+ 测点类
+ </summary>
+	<remarks></remarks>
+</member><member name="T:MeasureFileBase.MeasureData">
+	<summary>
+ 测点数据类
+ </summary>
+	<remarks></remarks>
+</member><member name="P:MeasureFileBase.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:MeasureFileBase.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:MeasureFileBase.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
+    <link href="../Asset/Css/userManager.css" rel="stylesheet" />
+    <title>用户管理</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Title-->
+        <div class="row">
+            <div class="col-xs-12" style="background-color: #18BE9B;">
+                <a href="#" class="btn btn-lg" role="button" style="float: left;">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </a>
+                <button class="btn btn-lg" role="button" style="background-color: #18BE9B; float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <!-- 下拉框-->
+        <div>
+            <table id="fac" class="facTable">
+                <tr>
+                    <td>工厂名称</td>
+                    <td>操作</td>
+                </tr>
+                <tr>
+                    <td>工厂A</td>
+                    <td>
+                        <button>
+                            Del</button>
+                        <button>Update</button></td>
+                </tr>
+                <tr>
+                    <td>工厂B</td>
+                    <td>
+                        <button>
+                            Del</button>
+                        <button>Update</button></td>
+                </tr>
+            </table>
+        </div>
+        <div id="tableCondition">
+            <table class="facTable">
+                <tr>
+                    <td>
+                        <input type="text" id="txt_input" /></td>
+                    <td>
+                        <button id="btn_save">
+                            Add</button></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</body>
+<script src="../Asset/Js/require.js" data-main="../Asset/Js/System/UserManager.js"></script>
+</html>

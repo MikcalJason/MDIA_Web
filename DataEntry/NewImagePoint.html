@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maxsimum-scale=1.0">
+    <title>数据录入</title>
+    <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Title-->
+        <div class="row">
+            <div class="col-xs-12" style="background-color: #18BE9B;">
+                <a href="New.html" class="btn btn-lg" role="button" style="float: left; vertical-align: middle; color: #333333; ">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </a>
+                <button class="btn btn-lg" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #18BE9B; float: right">
+                    <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <!--工序下拉框-->
+        <div id="head" style="margin: 5px 0 5px 0">
+            <select class="form-control"></select>
+        </div>
+
+        <!--图片显示区-->
+        <div style="border: 1px solid #CCCCCC">
+            <div style="background-color: #fff; height: 33px;">
+                <button id="btnZoomIn" class="btn" style="float: right; border: none; background-color: #fff;"><span class="glyphicon glyphicon-zoom-out" aria-hidden="true" style="font-size: 17px;"></span></button>
+                <button id="btnZoomOut" class="btn" style="float: right; border: none; background-color: #fff;"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true" style="font-size: 17px;"></span></button>
+            </div>
+            <div id="main" style="height: 320px; background-color: #fff;"></div>
+        </div>
+
+        <!--输入提示区-->
+        <div id="form" style="margin: 5px 0">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>名义值</label>
+                </div>
+                <div class="col-xs-3">
+                    <label>上公差</label>
+                </div>
+                <div class="col-xs-3">
+                    <label>下公差</label>
+                </div>
+                <div class="col-xs-3" style="text-align: right;">
+                    <button id="buttonPrev" class="btn btn-xs" style="border: none;"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label id="lblNominal"></label>
+                </div>
+                <div class="col-xs-3">
+                    <label id="lblUpTol"></label>
+                </div>
+                <div class="col-xs-3">
+                    <label id="lblLowTol"></label>
+                </div>
+                <div class="col-xs-3" style="text-align: right;">
+                    <button type="button" class="btn btn-xs" id="buttonNext" style="border: none;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="margin: 5px 0;">
+                    <input type="tel" class="form-control" placeholder="输入尺寸值" />
+                    <div style="margin: 5px 0 5px 0">
+                        <button type="button" id="btnSure" class="btn btn-sm btn-block" style="background-color: #18BE9B">确 定</button><!--btnSure-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--提交时的模态框-->
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+
+                <div id="modal-content" class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                        <button id="submit" type="button" class="btn btn-info">确定</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</body>
+<script src="../Asset/Js/require.js" data-main="../Asset/Js/DataEntry/NewImagePoint.js"></script>
+</html>

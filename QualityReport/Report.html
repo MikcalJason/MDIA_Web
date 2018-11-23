@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
+    <link href="../Asset/Css/publicCss.css" rel="stylesheet" />
+    <title>报告表</title>
+    <style>
+        #Main {
+            padding: 0px 20px;
+        }
+        #Main dl
+        {
+            width:100%;
+            float:left;
+            display:block;
+            border-bottom:1px solid #efefef;
+        }
+         #Main dl:hover
+        {
+            background-color:#baeef7;
+        }
+         #Main dl dt
+        {
+            float:left;
+            margin-right:20px;
+        }
+         #Main dl dd
+        {
+            margin-top:15PX;
+        }        
+        .left{
+            float: left;
+        }
+
+        .right{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-xs-12" style="background-color: #4E5AB0;">
+<!--                <div class="col-xs-4">
+                <a href="JavaScript:UpperLevel()" class="btn btn-lg" role="button" style="float: left;color:#fff">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </a>
+                </div>-->
+                                <div class="col-xs-12" style="vertical-align:middle;text-align:center;padding:10px;">
+                    <div style="color: #fff; font-size: 18px;display:inline-block;">质量报告</div>
+                </div>
+<!--                <div class="col-xs-4">
+                <button class="btn btn-lg" role="button" style="background-color: #4E5AB0; float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color:#fff"></span>
+                </button>
+                </div>-->
+            </div>
+        </div>
+        <br />
+        <br />
+        <div id="Main">
+            <a></a>
+        </div>
+
+        <div class="row" id="bott">
+            <div class="col-xs-12 fix">
+                <div class="col-xs-4 col-lg-4">
+                    <a class="unSelect" href="../PassRate/PartStat.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-adjust" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center">
+                            数据统计
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-4 col-lg-4">
+                    <a  style="color:#4E5AB0;"  href="Report.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-file" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            质量报告
+                        </div>
+                    </a>
+                    </div>
+                    <div class="col-xs-4 col-lg-4">
+                    <a class='unSelect' href="../SystemSetting/SystemSetting.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-cog" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            系统设置
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var returns = "";
+    function UpperLevel() {
+        var arrretuns = returns.split('\\');
+        var str = "";
+        for (var i = 0; i < arrretuns.length - 2; i++) {
+            str += arrretuns[i] + "\\";
+        }
+        str += arrretuns[arrretuns.length - 2];
+        if (arrretuns[arrretuns.length - 2] == "CmmDM") {
+
+        }
+        else {
+            loads(str);
+        }
+    }
+
+    function add(FileUrl) {
+        var str = FileUrl.getAttribute("data-url")
+        loads(str);
+    }
+    
+    function loads(str) {
+        $.post("../Ajax/Handler.ashx", { command: 31, FileUrl: str }, function (Info) {
+            returns = str;
+            var data = Info.arrTable[0];
+            var dl = $("#Main a").eq(-1);
+            $("#Main  a:not(:first)").html("");
+            var trHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Type == 0) {
+                        trHTML += "<a href='javascript:' onclick='add(this)' data-url='" + data[i].FileUrl + "'> <dl><dt><img src='data:image/png;base64," + data[i].Thumbnail + "' /></dt> <dd class='left'>" + data[i].Name + "</dd> <dd class ='right'> <span class='glyphicon glyphicon-menu-right' aria-hidden='true'></span></dd> </dl></a>";
+                }
+                if (data[i].Type == 1) {
+                    trHTML += "<a href='javascript:'  onclick='addpdf(this)' data-url='" + data[i].FileUrl + "'> <dl><dt><img src='data:image/png;base64," + data[i].Thumbnail + "' /></dt> <dd class='left'>" + data[i].Name + "</dd></dl></a>";
+                }
+            }
+            dl.after(trHTML);
+        }, "json")
+    }
+
+    function addpdf(PDF) {
+        var str = PDF.getAttribute("data-url")
+        $.post("../Ajax/Handler.ashx", { command: 32, PDFName: str }, function (Info) {
+            var data = Info.arrTable[0];
+        }, "json")
+        pdf = "Test.pdf";
+        if (navigator.userAgent.indexOf('Android') > -1) {
+            //判断移动端是android 还是ios ，若是android 则要借助pdf插件
+            window.location.href = "../Asset/pluginPdf/viewer.html?file=" + pdf;
+        } else {
+            //ios直接打开pdf
+            //window.location.href = url;
+            window.location.href = "../Asset/pluginPdf/viewer.html?file=" + pdf;
+        }
+    }
+</script>
+<script src="../Asset/Js/require.js" data-main="../Asset/Js/QualityReport/Report.js"></script>
+</html>

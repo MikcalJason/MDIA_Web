@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Factorys>
+  <Factory Name="无锡工厂">
+    <Project Name="XL100" ImageURL="EV31.png">
+      <PassrateChart PartName="BIW_LD"></PassrateChart>
+      <KeyPartPassrateChart PartName="左前门|右前门|顶盖" ImageURL="1.png|2.png|3.png"></KeyPartPassrateChart>
+      <KeyPartCIIChart PartName="左前门|右前门|顶盖" ImageURL="1.png|2.png|3.png"></KeyPartCIIChart>
+      <KeyPartChangeChart PartName="左前门|右前门|顶盖" ImageURL="1.png|2.png|3.png"></KeyPartChangeChart>
+      <CIIChart PartName="BIW_LD"></CIIChart >
+      <SortChart PartName="BIW_LD" Type="Area" TopN="5"></SortChart>
+      <AlarmChart PartName="BIW_LD"></AlarmChart>
+      <CPChart PartName="BIW_LD"></CPChart>
+      <MonthPassrateChart PartName="BIW_LD"></MonthPassrateChart>
+      <MonthCIIChart PartName="BIW_LD"></MonthCIIChart>
+      <Image URL="EV31.png"></Image>
+      <Label PartName="BIW_LD" Key="CII指数|平均合格率"></Label>
+    </Project>
+  </Factory>
+</Factorys>

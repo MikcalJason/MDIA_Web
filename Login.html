@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="Asset/Css/bootstrap.css" />
+    <title>系统登录</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <img src="Asset/Img/login_decorate.png" style="display: block; float: right;" />
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="Asset/Img/logo.png" style="display: block; margin: 0 auto;" />
+            </div>
+        </div>
+        <div class="row" style="height: 22px;"></div>
+        <div class="row">
+            <div class="col-xs-1 col-xs-offset-1" style="padding: 10px 10px;">
+                <label>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </label>
+            </div>
+            <div class="col-xs-9">
+                <input type="text" id="UserName" class="form-control" placeholder="Username" />
+            </div>
+        </div>
+
+        <div class="row" style="height: 18px;"></div>
+
+        <div class="row">
+            <div class="col-xs-1 col-xs-offset-1" style="padding: 10px 10px;">
+                <label class=""><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
+            </div>
+            <div class="col-xs-9">
+                <input type="password" id="Password" class="form-control" placeholder="Password" />
+            </div>
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <button type="button" id="btn_Login" class="btn btn-block" style="background-color: #4E5AB0; color: #fff; border-Radius: 0px;">登 陆</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="Asset/Js/require.js" data-main="Asset/Js/Login/Login.js"></script>
+</html>

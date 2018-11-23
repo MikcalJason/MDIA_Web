@@ -1,0 +1,156 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CmmDM.Model
+{
+    public class DM_MeasureMatrix
+    {
+        //NominalArray和FileArray必须是有序的,分别按NominalID和FileID排序
+        public List<DM_ModelNominal>     NominalArray = null; 
+        public List<DM_ModelMeasureFile> FileArray = null;
+
+        protected UInt32[] m_arrNominalID = null;
+        protected UInt32[] m_arrFileID = null;
+        protected float[] m_arrData = null;
+        private const float NULL_VALUE = -999;
+
+        public int Cols
+        {
+            get 
+            {
+                if (m_arrFileID == null)
+                    return 0;
+                else
+                    return m_arrFileID.Length; 
+            }
+        }
+
+        public int Rows
+        {
+            get 
+            {
+                if (m_arrNominalID == null)
+                    return 0;
+                else
+                    return m_arrNominalID.Length; 
+            }
+        }
+
+        //构建矩阵
+        public void MakeMatrix()
+        {
+            int nIndex = 0;
+
+            m_arrNominalID = new UInt32[NominalArray.Count];
+            foreach (DM_ModelNominal nominal in NominalArray)
+            {
+                m_arrNominalID[nIndex] = nominal.NominalID;
+                nIndex++;
+            }
+
+            nIndex = 0;
+            m_arrFileID = new UInt32[FileArray.Count];
+            foreach (DM_ModelMeasureFile file in FileArray)
+            {
+                m_arrFileID[nIndex] = file.FileID;
+                nIndex++;
+            }
+
+            m_arrData = new float[NominalArray.Count * FileArray.Count];
+            for (int i = 0; i < m_arrData.Length; i++ )
+                m_arrData[i] = NULL_VALUE;
+        }
+
+        //增加测量值
+        public void AddValue(UInt32 nNominalID, UInt32 nFileID, float fValue)
+        {
+            int nRowCount = m_arrNominalID.Length;
+            int nColCount = m_arrFileID.Length;
+
+            int nRow = FindNominal(nNominalID);
+            int nCol = FindFile(nFileID);
+
+            if (nRow >= 0 && nCol >= 0)
+                m_arrData[nRow * nColCount + nCol] = fValue; 
+        }
+
+        //查找名义值行索引
+        int FindNominal(UInt32 nNominalID)
+        {
+            int nLow = 0;
+            int nHigh = m_arrNominalID.Length - 1;
+            int nMid;
+            int nPos = -1;
+
+            while (nLow <= nHigh && nPos == -1)
+            {
+                nMid = (nLow + nHigh) / 2;
+
+                if (m_arrNominalID[nMid] == nNominalID)
+                    nPos = nMid;
+                else if (nNominalID < m_arrNominalID[nMid])
+                    nHigh = nMid - 1;
+                else
+                    nLow = nMid + 1;
+            }
+
+            return nPos;
+        }
+
+        //取得值
+        public float GetValue(int nRow, int nCol)
+        {
+            int nRowCount = m_arrNominalID.Length;
+            int nColCount = m_arrFileID.Length;
+
+            if (nRow >= 0 && nRow < nRowCount && nCol >= 0 && nCol < nColCount)
+                return m_arrData[nRow * nColCount + nCol];
+
+            return NULL_VALUE;
+        }
+
+        public DM_ModelNominal GetNominal(int nRow)
+        {
+            return NominalArray[nRow];
+        }
+
+        public DM_ModelMeasureFile GetFile(int nCol)
+        {
+            return FileArray[nCol];
+        }
+
+        //判断测量数据是否为空
+        public bool IsDataNull(int nRow, int nCol)
+        {
+            float fValue = GetValue(nRow, nCol);
+            return DataType.IsDataNull(fValue);
+        }
+
+        //查找文件列索引
+        int FindFile(UInt32 nFileID)
+        {
+            int nLow = 0;
+            int nHigh = m_arrFileID.Length - 1;
+            int nMid;
+            int nPos = -1;
+
+            while (nLow <= nHigh && nPos == -1)
+            {
+                nMid = (nLow + nHigh) / 2;
+
+                if (m_arrFileID[nMid] == nFileID)
+                    nPos = nMid;
+                else if (nFileID < m_arrFileID[nMid])
+                    nHigh = nMid - 1;
+                else
+                    nLow = nMid + 1;
+            }
+
+            return nPos;
+        }
+
+    }
+}

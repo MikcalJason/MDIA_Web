@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Factorys>
+  <Factory Name="无锡工厂">
+    <Project Name="XL100" ImageURL="EV31.png">
+      <Label PartName="BIW_LD" Key="CII指数|平均合格率"></Label>
+      <PassrateChart PartName="BIW_LD"></PassrateChart>
+      <CIIChart PartName="BIW_LD"></CIIChart >
+      <SortChart PartName="BIW_LD" Type="Area" TopN="5"></SortChart>
+      <Image URL="EV31.png"></Image>
+      <MonthPassrateChart PartName="BIW_LD"></MonthPassrateChart>
+      <MonthCIIChart PartName="BIW_LD"></MonthCIIChart>
+    </Project>
+  </Factory>
+</Factorys>

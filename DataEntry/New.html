@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
+    <link href="../Asset/Css/publicCss.css" rel="stylesheet" />
+    <title>数据输入</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Title-->
+        <div class="row">
+            <div class="col-xs-12" style="background-color: #18BE9B;">
+                <a href="#" class="btn btn-lg" role="button" style="float: left;color:#333333">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </a>
+                <button class="btn btn-lg" role="button" style="background-color: #18BE9B; float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <!-- 下拉框-->
+        <select id="ddlst_Project" class="form-control" style="margin: 5px 0">
+            <option value="0">请选择车型</option>
+        </select>
+        <select id="ddlst_Part" class="form-control" style="margin: 5px 0">
+            <option value="0">请选择零件</option>
+        </select>
+        <br />
+        <!--图片盒子-->
+        <div id="imgWrap" style="min-height: 400px;">
+        </div>
+        <!--Footer-->
+        <div class="row" id="bott">
+            <div class="col-xs-12 fix">
+                <div class="col-xs-3 col-lg-3">
+                    <a class="unSelect" href="../PassRate/PartStat.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-adjust" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center">
+                            合格率
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-3 col-lg-3">
+                    <a style="color: red;" href="New.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-edit" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center; font-size: 14px;">
+                            输入
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-3 col-lg-3">
+                    <a class='unSelect' href="../WarnInfo/Alarm.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-dashboard" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            报警
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-3 col-lg-3">
+                    <a class="unSelect" href="../QualityReport/Report.html">
+                        <div style="text-align: center;"><span class="glyphicon glyphicon-file" style="font-size: 20px;" aria-hidden="true"></span></div>
+                        <div style="text-align: center;">
+                            报告
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="loading">
+
+
+        </div>
+    </div>
+</body>
+
+<script src="../Asset/Js/require.js" data-main="../Asset/Js/DataEntry/New.js"></script>
+</html>
