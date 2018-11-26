@@ -5,18 +5,26 @@
         "echart": "libs/Echart/echarts.min",
         "Mychart": "libs/Echart/MyChart",
         "myEchart": "libs/Echart/MyEChart",
-        "cookie": "libs/jquery.cookie",
         "bpjs": "libs/Bootstrap/bootstrap",
         "tmpl": "libs/jquery.tmpl"
+    },
+    shim: {
+        "tmpl": {
+            deps: ['jquery'],
+            exports:'_'
+        },
+        "bpjs": {
+            deps: ['jquery'],
+            exports:'bpjs'
+        }
     }
 })
 
-require(["jquery", "Mychart", "bpjs", "tmpl"], function ($, Myc, bpjs, tmpl) {
+require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
     var nodes = $("#Container>.row>.col-xs-10");//节点
     var parentNodes = $("#Container>.row");//父节点
     var nodeCur = 0;//子节点从1开始
     var parentIndex = 3;//父节点从3开始
-
 
     var tmplFunc = {
         BeforeInit: function () {
@@ -64,7 +72,7 @@ require(["jquery", "Mychart", "bpjs", "tmpl"], function ($, Myc, bpjs, tmpl) {
                 case "SortChart":
                     if ($("#tmplSortChart").length>0) {
                         $("#tmplSortChart").tmpl(data).appendTo($(nodes[nodeCur]));
-                        this.RenderBarChart("SortChart", "SortChart", data.AxisX, data.Passrate);
+                        this.RenderBarChart("SortChart", "质量排序", data.AxisX, data.Passrate);
                     }
                     nodeCur++;
                     break;
@@ -90,6 +98,7 @@ require(["jquery", "Mychart", "bpjs", "tmpl"], function ($, Myc, bpjs, tmpl) {
                     break;
             }
         },
+
         RenderBarChart: function (Id,Title,AxisX, FilePassrate) {
             var Datas = [{
                 "legend": Title,
@@ -98,6 +107,7 @@ require(["jquery", "Mychart", "bpjs", "tmpl"], function ($, Myc, bpjs, tmpl) {
             }];
             Myc.MuchBar(Id, Title, Datas);
         },
+
         RenderLineChart: function (Id, Title, AxisX, FilePassrate) {
             var Datas = [{
                 "legend": Title,

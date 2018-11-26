@@ -229,7 +229,11 @@ public class CmdProjectStat
             {
                 SetImage((ImageTag)statInfo.Tags[i]);
             }
-            else if (statInfo.Tags[i].TagName == "Label")
+        }
+
+        for (int i = 0; i < statInfo.Tags.Length; i++)
+        {
+            if (statInfo.Tags[i].TagName == "Label")
             {
                 StatLabel(conn, projectInfo, (LabelTag)statInfo.Tags[i], ref strError);
             }
@@ -240,7 +244,7 @@ public class CmdProjectStat
 
     protected void StatPassrate(ServerConnection conn, ProjectInfo projectInfo, PassrateChartTag tag, ref string strError)
     {
-        if (tag.PartInfo.PartID == 0) 
+        if(tag.PartInfo.PartID == 0) 
             return;
 
         float fAveragePassRate = 0;
@@ -284,7 +288,7 @@ public class CmdProjectStat
                     {
                         if (label.Items[j].TagName[0] == "平均合格率")
                         {
-                            label.Items[j].Value[0] = fAveragePassRate;
+                            label.Items[j].Value[0] = (float)Math.Round(fAveragePassRate*100,1);
                         }
                         else if (label.Items[j].TagName.Length > 1)
                         {
@@ -366,6 +370,7 @@ public class CmdProjectStat
             if (projectInfo.Tags[nTagIndex].TagName == "Label")
             {
                 LabelTag label = (LabelTag)projectInfo.Tags[nTagIndex];
+
                 if (label.PartInfo.PartID == tag.PartInfo.PartID)
                 {
                     for (int j = 0; j < label.Items.Length; j++)
@@ -375,6 +380,17 @@ public class CmdProjectStat
                             label.Items[j].Value[0] = fCII;
                         }
                     }
+                }
+            }
+            if (projectInfo.Tags[nTagIndex].TagName == "CIIChart")
+            {
+                CIIChartTag ciiTag = (CIIChartTag)projectInfo.Tags[nTagIndex];
+                ciiTag.AxisX = new string[arrSigma.Count];
+                ciiTag.Passrate = new float[arrSigma.Count];
+                for (int i = 0; i < arrSigma.Count; i++)
+                {
+                    ciiTag.AxisX[i] = (i+1).ToString();
+                    ciiTag.Passrate[i] = arrSigma[i];
                 }
             }
         }
@@ -466,6 +482,7 @@ public class CmdProjectStat
                 if (item.TagName[0] == "平均合格率" && item.Value[0] < 0)
                 {
                     item.Value[0] = StatPassrate(conn, projectInfo.ProjectID, tag.PartInfo.PartID, ref strError);
+                    item.Value[0] =(float)Math.Round(item.Value[0]*100,1);
                 }
 
                 if (item.TagName[0] == "CII指数" && item.Value[0] < 0)

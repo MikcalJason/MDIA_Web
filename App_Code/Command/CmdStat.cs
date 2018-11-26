@@ -185,7 +185,6 @@ public class CmdStat
             float fSigma6 = (float)recvSigmaTable.GetValue(i, nIndexSigma);
             arrSigma.Add(fSigma6);
         }
-
         return true;
     }
 

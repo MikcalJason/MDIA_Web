@@ -59,5 +59,4 @@ public class LabelTag : BaseTag
         for (int i = 0; i < Items.Length; i++)
             Items[i].Clear();
     }
-
 }
