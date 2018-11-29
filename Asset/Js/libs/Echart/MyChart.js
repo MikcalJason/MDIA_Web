@@ -3,7 +3,7 @@
 define(['myEchart', 'echart'], function (MyEChart, echarts) {
 
 //单个柱状图
-function SingleBar(id, text, Data, clickmain) {
+    function SingleBar(id, text, Data,CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -15,7 +15,7 @@ function SingleBar(id, text, Data, clickmain) {
     }
     else {
 
-        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data,2);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 2, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -23,7 +23,7 @@ function SingleBar(id, text, Data, clickmain) {
 
 }
 //多个柱状图
-function MuchBar(id, text, Data, clickmain) {
+    function MuchBar(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -35,7 +35,7 @@ function MuchBar(id, text, Data, clickmain) {
         option = myChart.getOption();
     }
     else{
-        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 1);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 1, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -43,7 +43,7 @@ function MuchBar(id, text, Data, clickmain) {
 
 }
 //堆叠条形图
-function HeapBar(id, text, Data, clickmain) {
+    function HeapBar(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -56,7 +56,7 @@ function HeapBar(id, text, Data, clickmain) {
     }
     else {
 
-        option = MyEChart.ChartOptions.ChartOption(text, arrType, "总量", Data,3);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "总量", Data, 3, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -64,7 +64,7 @@ function HeapBar(id, text, Data, clickmain) {
 
 }
 //折线图
-function SingleLine(id, text, Data, clickmain) {
+    function SingleLine(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -75,14 +75,14 @@ function SingleLine(id, text, Data, clickmain) {
     }
     else {
 
-        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data,2);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 2, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
     Events.ClickMain(myChart, clickmain);
 }
 //多折线图
-function MuchLine(id, text, Data, clickmain) {
+    function MuchLine(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -95,7 +95,7 @@ function MuchLine(id, text, Data, clickmain) {
     }
     else {
 
-        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data,2);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 2, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -104,7 +104,7 @@ function MuchLine(id, text, Data, clickmain) {
 }
 
 //柱折图
-function BarLine(id, text, Data, clickmain) {
+    function BarLine(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     // 指定图表的配置项和数据
     var arrType = new Array();
@@ -116,7 +116,7 @@ function BarLine(id, text, Data, clickmain) {
         option = myChart.getOption();
     }
     else {
-       option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data,2);
+        option = MyEChart.ChartOptions.ChartOption(text, arrType, "", Data, 2, CII);
     }
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -125,7 +125,7 @@ function BarLine(id, text, Data, clickmain) {
 }
 
 //饼型图
-function Pie(id, text, Data, clickmain) {
+    function Pie(id, text, Data, CII, clickmain) {
     var myChart = echarts.init(document.getElementById("" + id + ""));
     var option;
     if (Data == null) {
@@ -133,7 +133,7 @@ function Pie(id, text, Data, clickmain) {
     }
     else {
 
-        option = MyEChart.ChartOptions.PieOption(text, Data);
+        option = MyEChart.ChartOptions.PieOption(text, Data, CII);
     }
  
     myChart.setOption(option);

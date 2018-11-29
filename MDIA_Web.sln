@@ -1,18 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MDIA_Web", ".", "{007D1739-D9A4-4A99-AE3C-5383FAEB46F4}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MDIA_Web", ".", "{44E6D718-370A-41DC-AFDE-EB49B16787DF}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/MDIA_Web"
-		Debug.AspNetCompiler.PhysicalPath = "F:\软件开发\MDIA\V4\大通\MDIA_Web\"
+		Debug.AspNetCompiler.PhysicalPath = "..\MDIA_Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MDIA_Web\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/MDIA_Web"
-		Release.AspNetCompiler.PhysicalPath = "F:\软件开发\MDIA\V4\大通\MDIA_Web\"
+		Release.AspNetCompiler.PhysicalPath = "..\MDIA_Web\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\MDIA_Web\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -26,8 +26,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{007D1739-D9A4-4A99-AE3C-5383FAEB46F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{007D1739-D9A4-4A99-AE3C-5383FAEB46F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E6D718-370A-41DC-AFDE-EB49B16787DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E6D718-370A-41DC-AFDE-EB49B16787DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

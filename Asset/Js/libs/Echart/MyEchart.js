@@ -2,7 +2,7 @@
 
 define(function(){
     var ChartOptions = {
-        ChartMontage: function (text, arrType, strStack, Data)
+        ChartMontage: function (text, arrType, strStack, Data,CII)
         {// 基于准备好的dom，初始化echarts实例
 
             var legendData = new Array();
@@ -13,6 +13,7 @@ define(function(){
                 strxAxis = Data[i].xAxis;
                 Tooformatter += "{a" + i + "}:{c" + i + "}%<br />"
             }
+            var CiiLength = strxAxis.length - 1;
             var Legend = [];
             var strSeries = "[";
 
@@ -28,15 +29,20 @@ define(function(){
                 }
                 else if (i + 1 == Data.length) {
                     if (legendData[i] != "") {
-
                         Legend.push(legendData[i] + "");
                     }
                     strSeries += "{\"name\":\"" + legendData[i] + "\",";
                     strSeries += "\"type\":\"" + arrType[i] + "\",";
                     strSeries += "\"stack\":\"" + strStack + "\",";
-                    strSeries += "\"data\":[" + Data[i].series + "]}]";
+                    strSeries += "\"data\":[" + Data[i].series + "]"
+                    if (CII != null) {
+                        strSeries += ",\"markLine\":{\"lineStyle\":{\"color\":\"#FF8400\"},\"data\":[[{\"coord\":[ 0 ," + CII + "]},{\"coord\":[" + CiiLength + "," + CII + "]}]]}";
+                    }
+                    strSeries+="}]";
+
                 }
             }
+
             var json = JSON.parse(strSeries);
             return {
                 'Legend':Legend,
@@ -45,8 +51,8 @@ define(function(){
                 'formatter': Tooformatter
             }
         },
-        ChartOption: function (text, arrType, strStack, Data,nLum) {
-            var DataMontage = ChartOptions.ChartMontage(text, arrType, strStack, Data)
+        ChartOption: function (text, arrType, strStack, Data,nLum,CII) {
+            var DataMontage = ChartOptions.ChartMontage(text, arrType, strStack, Data,CII)
             if (nLum == 1) {
                 option = {
                     title: {
@@ -102,11 +108,11 @@ define(function(){
                             type: 'shadow'
                         }
                     },
-                    legend: {
-                        top: 30,
-                        align: 'left',
-                        data: DataMontage.Legend,
-                    },
+                    //legend: {
+                    //    top: 30,
+                    //    align: 'left',
+                    //    data: DataMontage.Legend,
+                    //},
                     xAxis: {
                         data: DataMontage.strxAxis,
                     },
@@ -114,6 +120,7 @@ define(function(){
                     },
                     series: DataMontage.json,
                     barGap: 0,
+                    color: ['#4E5AB0']
                     //color: ['red', 'blue', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
                 };
             }
@@ -136,6 +143,7 @@ define(function(){
                     },
                     series: DataMontage.json,
                     barGap: 0,
+                    color: ['#4E5AB0']
                     //color: ['red', 'yellow', 'green']
                 };
             }

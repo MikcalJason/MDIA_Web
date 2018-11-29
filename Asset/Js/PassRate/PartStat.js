@@ -25,7 +25,7 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
     var parentNodes = $("#Container>.row");//父节点
     var nodeCur = 0;//子节点从1开始
     var parentIndex = 3;//父节点从3开始
-
+    var ciiValue;
     var tmplFunc = {
         BeforeInit: function () {
             nodeCur = 0;
@@ -50,7 +50,12 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
         Add: function (name, data) {
             switch (name) {
                 case "Label":
-                    if ($("#tmplLabel").length>0) {
+                    if ($("#tmplLabel").length > 0) {
+                        for (var i = 0; i < data.Items.length; i++) {
+                            if (data.Items[i].TagName == "CII指数") {
+                                ciiValue = data.Items[i].Value[0];
+                            }
+                        }
                         $("#tmplLabel").tmpl(data).appendTo($(nodes[nodeCur]));
                     }
                     nodeCur++;
@@ -58,6 +63,9 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
                 case "PassrateChart":
                     if ($("#tmplPassrateChart").length>0) {
                         $("#tmplPassrateChart").tmpl(data).appendTo($(nodes[nodeCur]));
+                        $.each(data.Passrate, function (i, item) {
+                            data.Passrate[i] = data.Passrate[i] * 100;
+                        })
                         this.RenderBarChart("PassrateChart","合格率",data.AxisX,data.Passrate);
                     }
                     nodeCur++;
@@ -65,14 +73,18 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
                 case "CIIChart":
                     if ($("#tmplCIIChart").length>0) {
                         $("#tmplCIIChart").tmpl(data).appendTo($(nodes[nodeCur]));
-                        this.RenderLineChart("CIIChart", "CII", data.AxisX, data.Passrate);
+                        
+                        this.RenderLineChart("CIIChart", "CII", data.AxisX, data.Passrate, ciiValue);
                     }
                     nodeCur++;
                     break;
                 case "SortChart":
                     if ($("#tmplSortChart").length>0) {
                         $("#tmplSortChart").tmpl(data).appendTo($(nodes[nodeCur]));
-                        this.RenderBarChart("SortChart", "质量排序", data.AxisX, data.Passrate);
+                        $.each(data.Passrate, function (i, item) {
+                            data.Passrate[i] = data.Passrate[i] * 100;
+                        })
+                        this.RenderHeapBar("SortChart", "质量排序", data.AxisX, data.Passrate);
                     }
                     nodeCur++;
                     break;
@@ -85,6 +97,9 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
                 case "MonthPassrateChart":
                     if ($("#tmplMonthPassrateChart").length>0) {
                         $("#tmplMonthPassrateChart").tmpl(data).appendTo($(nodes[nodeCur]));
+                        $.each(data.Passrate, function (i, item) {
+                            data.Passrate[i] = data.Passrate[i] * 100;
+                        })
                         this.RenderBarChart("MonthPassrateChart", "月度合格率", data.AxisX, data.Passrate);
                     }
                     nodeCur++;
@@ -92,6 +107,9 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
                 case "MonthCIIChart":
                     if ($("#tmplMonthCIIChart").length>0) {
                         $("#tmplMonthCIIChart").tmpl(data).appendTo($(nodes[nodeCur]));
+                        $.each(data.CII, function (i, item) {
+                            data.CII[i] = data.CII[i] * 100;
+                        })
                         this.RenderBarChart("MonthCIIChart", "月度CII", data.AxisX, data.CII);
                     }
                     nodeCur++;
@@ -108,13 +126,22 @@ require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
             Myc.MuchBar(Id, Title, Datas);
         },
 
-        RenderLineChart: function (Id, Title, AxisX, FilePassrate) {
+        RenderLineChart: function (Id, Title, AxisX, FilePassrate,cii) {
             var Datas = [{
                 "legend": Title,
                 "xAxis": AxisX,
                 "series": FilePassrate
             }];
-            Myc.SingleLine(Id, Title, Datas);
+
+            Myc.SingleLine(Id, Title, Datas,cii);
+        },
+        RenderHeapBar: function (Id, Title, AxisX, FilePassrate) {
+            var Datas = [{
+                "legend": Title,
+                "xAxis": AxisX,
+                "series": FilePassrate
+            }];
+            Myc.HeapBar(Id, Title, Datas);
         }
     }
 
