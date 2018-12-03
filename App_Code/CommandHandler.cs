@@ -78,7 +78,7 @@ public class CommandHandler
 
             strResult = CmdQuery.OutImageInfo(recvPacketList);
         }
-
+        //加载文件
         else if (strCommand == "101")
         {
             recvPacket = CmdManager.UpLoadFile(context, 32, ref strError);
@@ -118,15 +118,27 @@ public class CommandHandler
             CmdSystemSetting setting = new CmdSystemSetting();
             strResult = setting.GetSettingInfo(context, ref strError);
         }
+        //设置工厂信息和查询条件
         else if (strCommand == "215")
         {
             CmdSystemSetting setting = new CmdSystemSetting();
             strResult = setting.SetSettingInfo(context, ref strError);
         }
+        //获取所有项目信息
         else if (strCommand == "216")
         {
             CmdProjectStat stat = new CmdProjectStat();
             strResult = stat.GetAllProjectInfo(context, ref strError);
+        }
+        else if (strCommand == "217")
+        {
+            recvPacket = CmdQuery.GetLikeReportFile(context, 31, ref strError);
+            strResult = CmdQuery.OutReportFile(recvPacket);
+        }
+        else if (strCommand == "218")
+        {
+            recvPacket = CmdQuery.GetOptionReportFile(context, 31, ref strError);
+            strResult = CmdQuery.OutReportFile(recvPacket);
         }
         return strResult;
     }

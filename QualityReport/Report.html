@@ -4,55 +4,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="../Asset/Css/bootstrap.css" />
-    <link href="../Asset/Css/publicCss.css" rel="stylesheet" />
+    <!--    <link href="../Asset/Css/publicCss.css" rel="stylesheet" />-->
+    <link rel="stylesheet" type="text/css"
+        media="screen and (max-device-width: 800px)"
+        href="../Asset/Css/publicCss.css" />
+    <link rel="stylesheet" type="text/css"
+        media="screen and (min-width: 800px) and (max-device-width: 1500px)"
+        href="../Asset/Css/publicCssForWindow.css" />
     <title>报告表</title>
     <style>
         #Main {
             padding: 0px 20px;
         }
-        #Main dl
-        {
-            width:100%;
-            float:left;
-            display:block;
-            border-bottom:1px solid #efefef;
-        }
-         #Main dl:hover
-        {
-            background-color:#baeef7;
-        }
-         #Main dl dt
-        {
-            float:left;
-            margin-right:20px;
-        }
-         #Main dl dd
-        {
-            margin-top:15PX;
-        }        
-        .left{
+
+            #Main dl {
+                width: 100%;
+                float: left;
+                display: block;
+                border-bottom: 1px solid #efefef;
+            }
+
+                #Main dl:hover {
+                    background-color: #baeef7;
+                }
+
+                #Main dl dt {
+                    float: left;
+                    margin-right: 20px;
+                }
+
+                #Main dl dd {
+                    margin-top: 15PX;
+                }
+
+        .left {
             float: left;
         }
 
-        .right{
+        .right {
             float: right;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-xs-12" style="background-color: #4E5AB0;">
-<!--                <div class="col-xs-4">
+        <div class="row" id="top">
+            <div class="col-xs-12 fix" style="background-color: #4E5AB0;">
+                <!--                <div class="col-xs-4">
                 <a href="JavaScript:UpperLevel()" class="btn btn-lg" role="button" style="float: left;color:#fff">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </a>
                 </div>-->
-                                <div class="col-xs-12" style="vertical-align:middle;text-align:center;padding:10px;">
-                    <div style="color: #fff; font-size: 18px;display:inline-block;">质量报告</div>
+                <div class="col-xs-12" style="vertical-align: middle; text-align: center; padding: 10px;">
+                    <div style="color: #fff; font-size: 18px; display: inline-block;">质量报告</div>
                 </div>
-<!--                <div class="col-xs-4">
+                <!--                <div class="col-xs-4">
                 <button class="btn btn-lg" role="button" style="background-color: #4E5AB0; float: right">
                     <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color:#fff"></span>
                 </button>
@@ -61,7 +67,38 @@
         </div>
         <br />
         <br />
-        <div id="Main">
+        <br />
+        <div class="row" style="padding: 0 18px 0 18px">
+            <div class="col-xs-2">
+                <a href="JavaScript:UpperLevel()" class="btn btn-default" style="color: #4E5AB0;">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </div>
+            <div class="col-xs-8">
+                <div class="input-group">
+                    <input id="txtSearch" type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button id="btnSearch" class="btn btn-default" type="button" style="color: #4E5AB0">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="dropdown" style="text-align: center; vertical-align: central; height: 34px;">
+                    <a id="dropdownMenu1" class="dropdown-toggle" data-toggle="dropdown" style="line-height: 34px; color: #4E5AB0; border: none">
+                        <span class="glyphicon glyphicon-option-horizontal"></span>
+                    </a>
+                    <ul id="ulOptions" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="min-width: 80px;">
+                        <li><a>最近一月</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a>最近一周</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="Main" style="margin-top: 15px;">
             <a></a>
         </div>
 
@@ -77,14 +114,14 @@
                 </div>
 
                 <div class="col-xs-4 col-lg-4">
-                    <a  style="color:#4E5AB0;"  href="Report.html">
+                    <a style="color: #4E5AB0;" href="Report.html">
                         <div style="text-align: center;"><span class="glyphicon glyphicon-file" style="font-size: 20px;" aria-hidden="true"></span></div>
                         <div style="text-align: center;">
                             质量报告
                         </div>
                     </a>
-                    </div>
-                    <div class="col-xs-4 col-lg-4">
+                </div>
+                <div class="col-xs-4 col-lg-4">
                     <a class='unSelect' href="../SystemSetting/SystemSetting.html">
                         <div style="text-align: center;"><span class="glyphicon glyphicon-cog" style="font-size: 20px;" aria-hidden="true"></span></div>
                         <div style="text-align: center;">
@@ -99,13 +136,16 @@
 <script>
     var returns = "";
     function UpperLevel() {
+        if (returns == "" || returns == undefined || returns == null) {
+            window.location.href = "./Report.html";
+        }
         var arrretuns = returns.split('\\');
         var str = "";
         for (var i = 0; i < arrretuns.length - 2; i++) {
             str += arrretuns[i] + "\\";
         }
         str += arrretuns[arrretuns.length - 2];
-        if (arrretuns[arrretuns.length - 2] == "CmmDM") {
+        if (arrretuns[arrretuns.length - 2] == "bin") {
 
         }
         else {
@@ -117,7 +157,7 @@
         var str = FileUrl.getAttribute("data-url")
         loads(str);
     }
-    
+
     function loads(str) {
         $.post("../Ajax/Handler.ashx", { command: 31, FileUrl: str }, function (Info) {
             returns = str;
@@ -127,7 +167,7 @@
             var trHTML = "";
             for (var i = 0; i < data.length; i++) {
                 if (data[i].Type == 0) {
-                        trHTML += "<a href='javascript:' onclick='add(this)' data-url='" + data[i].FileUrl + "'> <dl><dt><img src='data:image/png;base64," + data[i].Thumbnail + "' /></dt> <dd class='left'>" + data[i].Name + "</dd> <dd class ='right'> <span class='glyphicon glyphicon-menu-right' aria-hidden='true'></span></dd> </dl></a>";
+                    trHTML += "<a href='javascript:' onclick='add(this)' data-url='" + data[i].FileUrl + "'> <dl><dt><img src='data:image/png;base64," + data[i].Thumbnail + "' /></dt> <dd class='left'>" + data[i].Name + "</dd> <dd class ='right'> <span class='glyphicon glyphicon-menu-right' aria-hidden='true'></span></dd> </dl></a>";
                 }
                 if (data[i].Type == 1) {
                     trHTML += "<a href='javascript:'  onclick='addpdf(this)' data-url='" + data[i].FileUrl + "'> <dl><dt><img src='data:image/png;base64," + data[i].Thumbnail + "' /></dt> <dd class='left'>" + data[i].Name + "</dd></dl></a>";

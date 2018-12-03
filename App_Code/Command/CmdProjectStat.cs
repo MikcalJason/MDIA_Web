@@ -489,7 +489,6 @@ public class CmdProjectStat
                 {
                     item.Value[0] = StatCII(conn, projectInfo.ProjectID, tag.PartInfo.PartID, ref strError);
                 }
-
             }
             
         }
@@ -500,5 +499,5 @@ public class CmdProjectStat
         tag.URL = GetImagURL(tag.URL);
     }
 
-  
+    
 }

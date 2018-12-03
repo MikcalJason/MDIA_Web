@@ -20,7 +20,7 @@
     }
 })
 
-require(["jquery","tmpl","Mychart", "bpjs" ], function ($,_,Myc,bpjs) {
+require(["jquery","tmpl","Mychart", "bpjs"], function ($,_,Myc,bpjs) {
     var nodes = $("#Container>.row>.col-xs-10");//节点
     var parentNodes = $("#Container>.row");//父节点
     var nodeCur = 0;//子节点从1开始

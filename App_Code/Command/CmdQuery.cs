@@ -712,7 +712,61 @@ public class CmdQuery
 
             //连接服务器
             ServerConnection conn = new ServerConnection();
-            Packet recvPacket = conn.ExecuteCommand(nCommand, arrTable);
+            Packet recvPacket = conn.ExecuteCommand(nCommand, arrTable,1);
+            return recvPacket;
+        }
+        catch (Exception ex)
+        {
+            strError = "CmdQuery-GetClass 错误:" + ex.Message;
+            return null;
+        }
+    }
+
+    //模糊查询报告文件夹
+    static public Packet GetLikeReportFile(HttpContext context, int nCommand, ref string strError) 
+    {
+        try
+        {
+            string strFileUrl = CommandTool.ReqString(context, "FileUrl");
+
+            PacketTable table = new PacketTable();
+            table.AddField("FileUrl", PacketTable.FieldType.TypeString);
+            table.MakeTable(1);
+            table.SetValue(0, 0, strFileUrl);
+
+            PacketTable[] arrTable = new PacketTable[1];
+            arrTable[0] = table;
+
+            //连接服务器
+            ServerConnection conn = new ServerConnection();
+            Packet recvPacket = conn.ExecuteCommand(nCommand, arrTable, 2);
+            return recvPacket;
+        }
+        catch (Exception ex)
+        {
+            strError = "CmdQuery-GetClass 错误:" + ex.Message;
+            return null;
+        }
+    }
+
+    //条件查询报告文件夹
+    static public Packet GetOptionReportFile(HttpContext context, int nCommand, ref string strError) 
+    {
+        try
+        {
+            string strFileUrl = CommandTool.ReqString(context, "FileUrl");
+
+            PacketTable table = new PacketTable();
+            table.AddField("FileUrl", PacketTable.FieldType.TypeString);
+            table.MakeTable(1);
+            table.SetValue(0, 0, strFileUrl);
+
+            PacketTable[] arrTable = new PacketTable[1];
+            arrTable[0] = table;
+
+            //连接服务器
+            ServerConnection conn = new ServerConnection();
+            Packet recvPacket = conn.ExecuteCommand(nCommand, arrTable, 3);
             return recvPacket;
         }
         catch (Exception ex)
@@ -750,6 +804,48 @@ public class CmdQuery
     }
 
     static public string OutReportFile(Packet packet)
+    {
+        if (packet == null)
+        {
+            Export handler = new Export();
+            return handler.Error("服务器错误");
+        }
+
+
+        byte nResult = 0;
+        if (!packet.Read(ref nResult))
+        {
+            Export handler = new Export();
+            return handler.Error("无法读取执行的结果");
+        }
+
+        string strMessage = "";
+        if (!packet.Read(ref strMessage))
+        {
+            Export handler = new Export();
+            return handler.Error("无法读取执行结果提示信息！");
+        }
+
+        int nTableCount = 0;
+        if (!packet.Read(ref nTableCount))
+        {
+            Export handler = new Export();
+            return handler.Error("无法读取参数表的数量");
+        }
+
+        if (nTableCount == 0)
+        {
+            Export handler = new Export();
+            return handler.OutPut(nResult, strMessage);
+        }
+        else
+        {
+            Export handler = new Export();
+            return handler.ToJson(nTableCount, packet);
+        }
+    }
+
+    static public string OutLikeReportFile(Packet packet)
     {
         if (packet == null)
         {
