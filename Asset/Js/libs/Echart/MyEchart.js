@@ -83,11 +83,11 @@ define(function(){
                             show: true,
                             textStyle: {
                                 color: '#000',
-                                fontSize: '50%',
+                                fontSize: '70%',
                             },
                             interval: 0,
                             showMinLabel: true,
-                            formatter: '{value} %'
+                            formatter: '{value}%'
                         },
                         splitNumber: 10
                     },
@@ -140,6 +140,16 @@ define(function(){
                     },
                     yAxis: {
                         data: DataMontage.strxAxis,
+                        textStyle: {
+                            color: '#000',
+                            fontSize: '40%',
+                        },
+                        axisLabel: {
+                            margin: 2
+                        }
+                    },
+                    grid: {
+                        left: '50%'
                     },
                     series: DataMontage.json,
                     barGap: 0,

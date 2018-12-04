@@ -68,7 +68,6 @@ require(["jquery"], function ($) {
 
             //开始日期
             $("#DateFrom").val(data.DateFrom);
-
             //结束日期
             $("#DateTo").val(data.DateTo);
 

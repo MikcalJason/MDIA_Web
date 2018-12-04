@@ -216,7 +216,7 @@ public class CmdStat
         sendTable.SetValue(0, 5, (uint)0);
         sendTable.SetValue(0, 6, (byte)0);
         sendTable.SetValue(0, 7, (byte)1);
-        sendTable.SetValue(0, 8, nTopN);
+        sendTable.SetValue(0, 8, period.LastNum);
         sendTable.SetValue(0, 9, (int)1);
 
         PacketTable[] arrSendTable = new PacketTable[1];
@@ -234,7 +234,7 @@ public class CmdStat
         int nIndexClassName = recvTable.GetFieldIndex("ClassName");
         int nIndexPassrate = recvTable.GetFieldIndex("Passrate");
 
-        for (int i = 0; i < recvTable.Rows; i++)
+        for (int i = 0; i < recvTable.Rows&&i<nTopN; i++)
         {
             DM_ModelSortClass passrate = new DM_ModelSortClass();
             passrate.ClassName = (string)recvTable.GetValue(i, nIndexClassName);

@@ -35,8 +35,8 @@ public class CmdSystemSetting
 
             Period period = GlobalSession.Period;
             systemSettingInfo.LastNum = period.LastNum;
-            systemSettingInfo.DateFrom = period.DateFrom.ToString("MM-dd-yyyy");
-            systemSettingInfo.DateTo = period.DateTo.ToString("MM-dd-yyyy");
+            systemSettingInfo.DateFrom = period.DateFrom.ToString("yyyy-MM-dd");
+            systemSettingInfo.DateTo = period.DateTo.ToString("yyyy-MM-dd");
 
             systemSettingInfo.ArrayFactory = GetFactoryList();
             if (systemSettingInfo.ArrayFactory == null)
@@ -128,8 +128,8 @@ public class CmdSystemSetting
                 SystemSettingInfo settingInfo = new SystemSettingInfo()
                 {
                     LastNum = nLastNum,
-                    DateFrom = DateTime.Now.ToString("MM-dd-yyyy"),
-                    DateTo = DateTime.Now.ToString("MM-dd-yyyy"),
+                    DateFrom = DateTime.Now.ToString("yyyy-MM-dd"),
+                    DateTo = DateTime.Now.ToString("yyyy-MM-dd"),
                     SelectFactory = strSelectFactory
                 };
                 SetInfo(settingInfo, ref strError);
